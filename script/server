@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec bin/rackup -p ${PORT:-9595}
