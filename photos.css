@@ -1,0 +1,17 @@
+body {
+  background-color: #292929;
+  color: #999;
+  font-family: "Proxima Nova Condensed", "Helvetica Neue", Helvetica, sans-serif;
+}
+.dark {
+  background-color: rgb(35, 35, 35);
+  color: #693;
+}
+.light {
+  background-color: #f1f1f1;
+  color: #222;
+}
+header {
+  margin-top: 5px;
+}
+  margin: 0;
