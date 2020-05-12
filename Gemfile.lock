@@ -22,11 +22,13 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
+    sequel (5.32.0)
     sinatra (2.0.8.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
+    sqlite3 (1.4.2)
     tilt (2.0.10)
     unicode-display_width (1.7.0)
 
@@ -37,7 +39,9 @@ DEPENDENCIES
   dotenv
   rack
   rubocop
+  sequel
   sinatra
+  sqlite3
 
 BUNDLED WITH
    2.1.4
