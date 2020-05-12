@@ -1,14 +1,15 @@
-<div class="photo">
-  <img src="guru.jpg" alt="guru logo">
-  <div class="photo-info">
-    <h4>A description</h4>
-    <p class="date">Tuesday Februarch 42nd</p>
+<% if @photos.empty? %>
+  <div class="photo">
+    <h3>There are no photos here yet.</h3>
   </div>
-</div>
-<div class="photo">
-  <img src="guru.jpg" alt="guru logo">
-  <div class="photo-info">
-    <h4>A description</h4>
-    <p class="date">Tuesday Februarch 42nd</p>
-  </div>
-</div>
+<% else %>
+  <% @photos.each do |photo| %>
+    <div class="photo">
+      <img src="<%= photo.url %>" alt="<%= photo.title %>">
+      <div class="photo-info">
+        <h4><%= photo.title %></h4>
+        <p class="date"><%= photo.created_at %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
