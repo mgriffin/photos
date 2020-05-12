@@ -1,4 +1,11 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
+gem 'dotenv'
 gem 'rack'
 gem 'sinatra'
+
+group :development do
+  gem 'rubocop'
+end
