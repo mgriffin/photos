@@ -3,6 +3,7 @@ GEM
   specs:
     ast (2.4.0)
     dotenv (2.7.5)
+    kgio (2.11.3)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
     parallel (1.19.1)
@@ -12,6 +13,7 @@ GEM
     rack-protection (2.0.8.1)
       rack
     rainbow (3.0.0)
+    raindrops (0.19.1)
     rexml (3.2.4)
     rubocop (0.83.0)
       parallel (~> 1.10)
@@ -31,6 +33,9 @@ GEM
     sqlite3 (1.4.2)
     tilt (2.0.10)
     unicode-display_width (1.7.0)
+    unicorn (5.5.5)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -42,6 +47,7 @@ DEPENDENCIES
   sequel
   sinatra
   sqlite3
+  unicorn
 
 BUNDLED WITH
    2.1.4
