@@ -3,4 +3,4 @@
 set -r
 source .env
 
-bundle exec bin/sequel -m db/migrations $DATABASE_URL
+bundle exec sequel -m db/migrations $DATABASE_URL
