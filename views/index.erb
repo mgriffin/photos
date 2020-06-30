@@ -5,11 +5,11 @@
 <% else %>
   <% @photos.each do |photo| %>
     <div class="photo">
-      <img src="<%= photo.url %>" alt="<%= photo.title %>">
       <div class="photo-info">
         <h4><%= photo.title %></h4>
-        <p class="date"><%= photo.created_at %></p>
+        <p class="moment"><%= photo.created_at %></p>
       </div>
+      <img src="<%= photo.url %>" alt="<%= photo.title %>">
     </div>
   <% end %>
 <% end %>

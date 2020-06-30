@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'dotenv'
+require 'fog/aws'
 require 'sequel'
 require 'sinatra'
 

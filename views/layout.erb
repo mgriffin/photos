@@ -26,5 +26,13 @@
         <span><a href="https://mikegriffin.ie">Made by Mike Griffin</a></span>
       </div>
     </footer>
+    <script src="/javascripts/moment.min.js"></script>
+    <script>
+      var el = document.querySelectorAll('.moment');
+      for (var i = 0; i < el.length; i++) {
+        date = el[i].innerText;
+        el[i].innerHTML = moment(date).format("dddd, MMMM Do YYYY");
+      }
+    </script>
   </body>
 </html>
