@@ -1,4 +1,5 @@
-Dir['./lib/models/*.rb'].each do |file|
-  puts file
+# frozen_string_literal: true
+
+Dir['./lib/models/*.rb'].sort.each do |file|
   require file
 end

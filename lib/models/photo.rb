@@ -11,7 +11,20 @@ class Photo < Sequel::Model
   end
 
   def url
-    aws.directories.new(key: ENV['AWS_BUCKET'])
-       .files.get_https_url(filename, Time.now.to_i + 10)
+    aws
+      .directories
+      .new(key: ENV['AWS_BUCKET'])
+      .files
+      .get(filename)
+      .url(Time.now.to_i + 10)
+  end
+
+  def image
+    aws
+      .directories
+      .new(key: ENV['AWS_BUCKET'])
+      .files
+      .get(filename)
+      .body
   end
 end

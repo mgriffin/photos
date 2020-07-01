@@ -18,3 +18,10 @@ get '/' do
   @photos = Photo.reverse(:created_at)
   erb :index
 end
+
+get '/p/:year/:month/:photo' do
+  Photo
+    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:photo]}")
+    .first
+    .image
+end

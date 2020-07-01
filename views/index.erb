@@ -9,7 +9,7 @@
         <h4><%= photo.title %></h4>
         <p class="moment"><%= photo.created_at %></p>
       </div>
-      <img src="<%= photo.url %>" alt="<%= photo.title %>">
+      <img src="/p/<%= photo.filename %>" alt="<%= photo.title %>">
     </div>
   <% end %>
 <% end %>
