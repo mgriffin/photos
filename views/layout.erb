@@ -31,7 +31,7 @@
       var el = document.querySelectorAll('.moment');
       for (var i = 0; i < el.length; i++) {
         date = el[i].innerText;
-        el[i].innerHTML = moment(date).format("dddd, MMMM Do YYYY");
+        el[i].innerHTML = moment(date, "YYYY-MM-DD HH:mm:ss Z").format("dddd, MMMM Do YYYY");
       }
     </script>
   </body>
