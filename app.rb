@@ -4,9 +4,12 @@ require 'dotenv'
 require 'fog/aws'
 require 'sequel'
 require 'sinatra'
+require 'will_paginate'
+require 'will_paginate/sequel'
 
 Dotenv.load
 DB = Sequel.connect(ENV['DATABASE_URL'])
+DB.extension(:pagination)
 require './lib/photos'
 
 set :public_folder, File.dirname(__FILE__) + '/public'
@@ -15,7 +18,8 @@ before do
 end
 
 get '/' do
-  @photos = Photo.reverse(:created_at)
+  page = params.fetch :page, 1
+  @photos = Photo.reverse(:created_at).paginate(page.to_i, 10)
   erb :index
 end
 
