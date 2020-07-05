@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# A model class for photos
 class Photo < Sequel::Model
   def aws
     @aws ||= Fog::Storage.new({
@@ -8,15 +9,6 @@ class Photo < Sequel::Model
                                 aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
                                 region: ENV['AWS_REGION']
                               })
-  end
-
-  def url
-    aws
-      .directories
-      .new(key: ENV['AWS_BUCKET'])
-      .files
-      .get(filename)
-      .url(Time.now.to_i + 10)
   end
 
   def image
