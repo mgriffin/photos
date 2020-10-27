@@ -2,6 +2,7 @@
 
 # A model class for photos
 class Photo < Sequel::Model
+  many_to_one :gallery
   def aws
     @aws ||= Fog::Storage.new({
                                 provider: 'AWS',
@@ -17,6 +18,15 @@ class Photo < Sequel::Model
       .new(key: ENV['AWS_BUCKET'])
       .files
       .get(filename)
+      .body
+  end
+
+  def thumb
+    aws
+      .directories
+      .new(key: ENV['AWS_BUCKET'])
+      .files
+      .get("t/#{filename}")
       .body
   end
 end
