@@ -29,3 +29,16 @@ get '/p/:year/:month/:photo' do
     .first
     .image
 end
+
+get '/t/:year/:month/:photo' do
+  Photo
+    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:photo]}")
+    .first
+    .thumb
+end
+
+get '/g/:slug' do
+  @gallery = Gallery.where(slug: params[:slug]).first
+  p @gallery
+  erb :gallery
+end
