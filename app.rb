@@ -26,22 +26,24 @@ get '/' do
   erb :index
 end
 
-get '/p/:year/:month/:photo' do
+get '/p/:year/:month/*' do
   Photo
-    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:photo]}")
+    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
     .first
     .image
 end
 
-get '/t/:year/:month/:photo' do
+get '/t/:year/:month/*' do
   Photo
-    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:photo]}")
+    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
     .first
     .thumb
 end
 
 get '/g/:slug' do
   @gallery = Gallery.where(slug: params[:slug]).first
-  p @gallery
+  if @gallery.nil?
+    not_found
+  end
   erb :gallery
 end
