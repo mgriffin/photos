@@ -27,17 +27,23 @@ get '/' do
 end
 
 get '/p/:year/:month/*' do
-  Photo
+  photo = Photo
     .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
     .first
-    .image
+  if photo.nil?
+    not_found
+  end
+  photo.image
 end
 
 get '/t/:year/:month/*' do
-  Photo
+  photo = Photo
     .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
     .first
-    .thumb
+  if photo.nil?
+    not_found
+  end
+  photo.thumb
 end
 
 get '/g/:slug' do
@@ -46,4 +52,9 @@ get '/g/:slug' do
     not_found
   end
   erb :gallery
+end
+
+not_found do
+  status 404
+  erb :oops
 end
