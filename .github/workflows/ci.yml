@@ -8,4 +8,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
       - run: script/bootstrap
+      - run: script/migrations
       - run: script/test
