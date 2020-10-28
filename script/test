@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-exec bin/rspec --color spec
+bundle exec rspec --color spec
