@@ -19,7 +19,10 @@ end
 
 get '/' do
   page = params.fetch :page, 1
-  @photos = Photo.reverse(:created_at).paginate(page.to_i, 10)
+  @photos = Photo
+    .where(gallery_id: nil)
+    .reverse(:created_at)
+    .paginate(page.to_i, 10)
   erb :index
 end
 
