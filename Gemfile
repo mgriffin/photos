@@ -14,6 +14,8 @@ group :production do
   gem 'unicorn'
 end
 
-group :development do
+group :development, :test do
+  gem 'rack-test'
+  gem 'rspec'
   gem 'rubocop'
 end

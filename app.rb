@@ -20,30 +20,38 @@ end
 get '/' do
   page = params.fetch :page, 1
   @photos = Photo
-    .where(gallery_id: nil)
-    .reverse(:created_at)
-    .paginate(page.to_i, 10)
+            .where(gallery_id: nil)
+            .reverse(:created_at)
+            .paginate(page.to_i, 10)
   erb :index
 end
 
 get '/p/:year/:month/*' do
-  Photo
-    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
-    .first
-    .image
+  photo = Photo
+          .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
+          .first
+  return not_found if photo.nil?
+
+  photo.image
 end
 
 get '/t/:year/:month/*' do
-  Photo
-    .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
-    .first
-    .thumb
+  photo = Photo
+          .where(filename: "#{params[:year]}/#{params[:month]}/#{params[:splat].first}")
+          .first
+  return not_found if photo.nil?
+
+  photo.thumb
 end
 
 get '/g/:slug' do
   @gallery = Gallery.where(slug: params[:slug]).first
-  if @gallery.nil?
-    not_found
-  end
+  return not_found if @gallery.nil?
+
   erb :gallery
+end
+
+not_found do
+  status 404
+  erb :oops
 end

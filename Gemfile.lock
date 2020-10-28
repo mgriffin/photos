@@ -3,6 +3,7 @@ GEM
   specs:
     ast (2.4.0)
     builder (3.2.4)
+    diff-lcs (1.4.4)
     dotenv (2.7.5)
     excon (0.75.0)
     fog-aws (3.6.6)
@@ -39,9 +40,24 @@ GEM
     rack (2.2.3)
     rack-protection (2.0.8.1)
       rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     raindrops (0.19.1)
     rexml (3.2.4)
+    rspec (3.9.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+    rspec-core (3.9.3)
+      rspec-support (~> 3.9.3)
+    rspec-expectations (3.9.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.4)
     rubocop (0.83.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
@@ -72,6 +88,8 @@ DEPENDENCIES
   dotenv
   fog-aws
   rack
+  rack-test
+  rspec
   rubocop
   sequel
   sinatra
