@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
+
+DATABASE_URL="sqlite://db/photos_test.db"
+
+bundle exec sequel -m db/migrations $DATABASE_URL
 bundle exec rspec --color spec
+rm db/photos_test.db

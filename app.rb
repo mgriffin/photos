@@ -8,7 +8,15 @@ require 'will_paginate'
 require 'will_paginate/sequel'
 
 Dotenv.load
-DB = Sequel.connect(ENV['DATABASE_URL'])
+
+configure :production, :development do
+  DB = Sequel.connect(ENV['DATABASE_URL'])
+end
+
+configure :test do
+  DB = Sequel.connect('sqlite://db/photos_test.db')
+end
+
 DB.extension(:pagination)
 require './lib/photos'
 
