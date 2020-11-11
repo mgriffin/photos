@@ -27,12 +27,16 @@
         <span><a href="https://mikegriffin.ie">Made by Mike Griffin</a></span>
       </div>
     </footer>
-    <script src="/javascripts/moment.min.js"></script>
-    <script>
+    <script src="/javascripts/dayjs.min.js"></script>
+    <script src="/javascripts/dayjs/plugin/advancedFormat.js"></script>
+    <script type="module">
+      dayjs.extend(window.dayjs_plugin_advancedFormat);
+
+      var date;
       var el = document.querySelectorAll('.moment');
       for (var i = 0; i < el.length; i++) {
         date = el[i].innerText;
-        el[i].innerHTML = moment(date, "YYYY-MM-DD HH:mm:ss Z").format("dddd, MMMM Do YYYY");
+        el[i].innerHTML = dayjs(date, "YYYY-MM-DD HH:mm:ss Z").format("dddd, MMMM Do YYYY");
       }
     </script>
     <script src='/javascripts/blueimp-gallery.min.js' type="text/javascript"></script>
