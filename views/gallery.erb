@@ -1,10 +1,16 @@
-<h3><%= @gallery.title %></h3>
-
 <% if @gallery.photos.empty? %>
   <div class="photo">
     <h3>There are no photos here yet.</h3>
   </div>
 <% else %>
+  <div class="row album-header" style="background: url(/p/<%= @gallery.photos.first.filename %>) center no-repeat;">
+    <div class="dimmer">
+      <h3><%= @gallery.title %>
+      <br /><small><%= @gallery.created_at.strftime("%A, %-d %B, %Y") %></small>
+      </h3>
+    </div>
+  </div>
+
   <div class="row">
     <div id="links">
     <% @gallery.photos.each do |photo| %>
