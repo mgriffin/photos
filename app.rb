@@ -40,6 +40,7 @@ get '/p/:year/:month/*' do
           .first
   return not_found if photo.nil?
 
+  content_type 'image/jpeg'
   photo.image
 end
 
@@ -49,6 +50,7 @@ get '/t/:year/:month/*' do
           .first
   return not_found if photo.nil?
 
+  content_type 'image/jpeg'
   photo.thumb
 end
 
