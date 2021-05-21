@@ -1,0 +1,5 @@
+#!/bin/bash
+
+set -r
+
+bundle exec rubocop --display-cop-names --extra-details --parallel
