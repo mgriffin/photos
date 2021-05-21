@@ -1,4 +1,8 @@
+require:
+  - rubocop-rspec
+  - rubocop-sequel
 AllCops:
+  NewCops: enable
   Exclude:
     - 'vendor/**/*'
     - 'bin/*'

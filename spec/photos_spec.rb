@@ -5,7 +5,7 @@ ENV['APP_ENV'] = 'test'
 require 'rspec'
 require 'rack/test'
 
-require File.dirname(__FILE__) + '/../app'
+require "#{File.dirname(__FILE__)}/../app"
 
 RSpec.describe 'Photos' do
   include Rack::Test::Methods

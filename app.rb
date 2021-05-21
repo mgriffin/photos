@@ -10,17 +10,17 @@ require 'will_paginate/sequel'
 Dotenv.load
 
 configure :production, :development do
-  DB = Sequel.connect(ENV['DATABASE_URL'])
+  @db = Sequel.connect(ENV['DATABASE_URL'])
 end
 
 configure :test do
-  DB = Sequel.connect('sqlite://db/photos_test.db')
+  @db = Sequel.connect('sqlite://db/photos_test.db')
 end
 
-DB.extension(:pagination)
+@db.extension(:pagination)
 require './lib/photos'
 
-set :public_folder, File.dirname(__FILE__) + '/public'
+set :public_folder, "#{File.dirname(__FILE__)}/public"
 before do
   headers 'X-Clacks-Overhead' => 'GNU Terry Pratchett'
 end
