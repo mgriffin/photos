@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'optparse'
+require './app'
+
+unless User.first.nil?
+  puts 'There is already a user in the database'
+  exit
+end
+
+options = {}
+OptionParser.new do |opt|
+  opt.banner = "Usage: script/first-user --username=foo --email=foo@bar.com --name='Fooby Foo'"
+  opt.on('-uNAME', '--username=NAME', 'The first user\'s username') { |u| options[:username] = u }
+  opt.on('-eEMAIL', '--email=EMAIL', 'Their email address') { |e| options[:email] = e }
+  opt.on('-nNAME', '--name=NAME', 'Their proper name') { |n| options[:name] = n }
+  opt.on('-v', '--verbose', 'Verbose output in JSON format') { options[:verbose] = true }
+end.parse!
+
+if options[:username].nil?
+  puts 'We\'re gonna need a username'
+  exit
+end
+
+if options[:email].nil?
+  puts 'We\'re gonna need a email'
+  exit
+end
+
+if options[:name].nil?
+  puts 'We\'re gonna need a name'
+  exit
+end
+
+User.create(login: options[:username], email: options[:email], name: options[:name])
+puts "@#{options[:username]} created"
