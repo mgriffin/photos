@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
+Sequel::Model.plugin :timestamps
+
 # A model class for photos
 class Photo < Sequel::Model
   many_to_one :gallery
+  many_to_one :photo
+
   def aws
     @aws ||= Fog::Storage.new({
                                 provider: 'AWS',
