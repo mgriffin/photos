@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Thumbnail do
+describe Photo do
   let(:app) { Sinatra::Application }
 
   context 'when thumbnail is not found' do
