@@ -1,36 +1,35 @@
 # frozen_string_literal: true
 
-ENV['APP_ENV'] = 'test'
+describe Photo do
+  let(:app) { Sinatra::Application }
 
-require 'rspec'
-require 'rack/test'
+  before do
+    Fog.mock!
+    Fog::Mock.reset
 
-require "#{File.dirname(__FILE__)}/../app"
-
-RSpec.describe 'Photos' do
-  include Rack::Test::Methods
-
-  def app
-    Sinatra::Application
+    dir = described_class.new.aws.directories.create(
+      key: ENV['AWS_BUCKET']
+    )
+    dir.files.create(key: '2020/10/known.jpg')
   end
 
-  it 'loads the root page' do
-    get '/'
-    expect(last_response).to be_ok
+  context 'when photo is found' do
+    before do
+      described_class.create(filename: '2020/10/known.jpg')
+    end
+
+    let(:response) { get '/p/2020/10/known.jpg' }
+
+    it 'returns status 200 OK' do
+      expect(response).to be_ok
+    end
   end
 
-  it 'returns 404 if a photo does not exist' do
-    get '/p/2020/10/halloween.jpg'
-    expect(last_response.status).to eq(404)
-  end
+  context 'when photo is not found' do
+    let(:response) { get '/p/2020/10/unknown.jpg' }
 
-  it 'returns 404 if a thumbnail does not exist' do
-    get '/t/2020/10/halloween.jpg'
-    expect(last_response.status).to eq(404)
-  end
-
-  it 'returns 404 if a gallery does not exist' do
-    get '/g/unknown-gallery'
-    expect(last_response.status).to eq(404)
+    it 'returns status 404 NOT FOUND' do
+      expect(response.status).to eq(404)
+    end
   end
 end

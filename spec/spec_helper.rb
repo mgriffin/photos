@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+require 'rspec'
+require 'rack/test'
+
+ENV['APP_ENV'] = 'test'
+require "#{File.dirname(__FILE__)}/../app"
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -30,4 +36,6 @@ RSpec.configure do |config|
   # inherited by the metadata hash of host groups and examples, rather than
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  include Rack::Test::Methods
 end
