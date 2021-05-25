@@ -5,7 +5,7 @@ describe Gallery do
 
   context 'when gallery is found' do
     before do
-      described_class.create(slug: 'known-gallery')
+      create(:gallery)
     end
 
     let(:response) { get '/g/known-gallery' }

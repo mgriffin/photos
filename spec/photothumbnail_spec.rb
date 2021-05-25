@@ -10,15 +10,15 @@ describe Photo do
     dir = described_class.new.aws.directories.create(
       key: ENV['AWS_BUCKET']
     )
-    dir.files.create(key: 't/2020/10/known.jpg')
+    dir.files.create(key: "t/#{attributes_for(:photo)[:filename]}")
   end
 
   context 'when thumbnail is found' do
     before do
-      described_class.create(filename: '2020/10/known.jpg')
+      create(:photo)
     end
 
-    let(:response) { get '/t/2020/10/known.jpg' }
+    let(:response) { get "/t/#{attributes_for(:photo)[:filename]}" }
 
     it 'returns status 200 OK' do
       expect(response).to be_ok

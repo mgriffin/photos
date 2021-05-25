@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'database_cleaner/sequel'
+require 'factory_bot'
 require 'rspec'
 require 'rack/test'
 
@@ -38,9 +39,11 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
-  include Rack::Test::Methods
+  config.include Rack::Test::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before(:suite) do
+    FactoryBot.find_definitions
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end
