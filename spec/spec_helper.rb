@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'database_cleaner/sequel'
 require 'rspec'
 require 'rack/test'
 
@@ -38,4 +39,16 @@ RSpec.configure do |config|
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
   include Rack::Test::Methods
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+  DatabaseCleaner.allow_remote_database_url = true
 end
