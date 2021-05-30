@@ -15,6 +15,8 @@ group :production do
 end
 
 group :development, :test do
+  gem 'database_cleaner-sequel'
+  gem 'factory_bot'
   gem 'rack-test'
   gem 'rspec'
   gem 'rubocop'
