@@ -139,7 +139,7 @@ GEM
     unicorn (6.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
-    uri (1.0.3)
+    uri (1.0.4)
     will_paginate (3.1.8)
 
 PLATFORMS
